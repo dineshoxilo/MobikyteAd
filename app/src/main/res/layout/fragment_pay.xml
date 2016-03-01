@@ -1,0 +1,82 @@
+<com.desarrollodroide.libraryfragmenttransactionextended.SlidingRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_layout"
+    android:orientation="vertical">
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:minHeight="?attr/actionBarSize"-->
+    <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            layout="@layout/line_progress_five" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_below="@+id/line1">
+
+            <TextView
+                android:id="@+id/text_too"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:text="@string/choose_option"
+                android:gravity="center"
+                android:textColor="@color/mdtp_light_gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/action_recyle_view"
+                android:layout_below="@+id/text_too"
+                android:layout_above="@+id/check_out_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+       <android.support.v7.widget.AppCompatButton
+                android:id="@+id/check_out_btn"
+                style="?android:textAppearanceSmall"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/checkout"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</com.desarrollodroide.libraryfragmenttransactionextended.SlidingRelativeLayout>
