@@ -191,6 +191,25 @@ public class Action extends Fragment {
         webSiteView = (EditText)view.findViewById(R.id.website);
         callView = (EditText)view.findViewById(R.id.call);
 
+        userCampaign.setCall("call");
+        webSiteView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userCampaign.setCall("web");
+                webSiteView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.blue_tick, 0);
+                callView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            }
+        });
+
+        callView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userCampaign.setCall("call");
+                callView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.blue_tick, 0);
+                webSiteView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            }
+        });
+
         webSiteView.setText(modalLogin.getWebsite().toString() != null ? modalLogin.getWebsite().toString() : "No web url is found");
 
 
@@ -257,7 +276,6 @@ public class Action extends Fragment {
             action = callView.getText().toString();
         }
 
-        userCampaign.setCall(action);
         userCampaign.setWebRequestUrl(web);
 
         Preview preview = Preview.newInstance(place, userCampaign, modalLogin);
@@ -323,7 +341,7 @@ public class Action extends Fragment {
 
         if (callView.getText().toString().equals("") || callView.getText().toString().equals("null"))
         {
-            action = "123456789";
+            action = "";
         }else{
             action = callView.getText().toString();
         }

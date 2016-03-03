@@ -410,6 +410,7 @@ public class Pay extends Fragment {
         String mo = mySeletedPlan.getPriceInUsd();
         JSONObject jsonObject = new JSONObject();
         try {
+            String dde = userCampaign.getCall() + "/" + userCampaign.getWebRequestUrl();
             jsonObject.put("accbal","25");
             jsonObject.put("camp_name",userCampaign.getCampaignTitle());
             jsonObject.put("click_to_action",userCampaign.getCall());

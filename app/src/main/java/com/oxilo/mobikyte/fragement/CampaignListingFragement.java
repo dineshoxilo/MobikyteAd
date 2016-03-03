@@ -388,9 +388,7 @@ public class CampaignListingFragement extends Fragment{
             verticalParent.setChildItemList(childItemList);
             verticalParent.setParentNumber(i);
             String ss = "" + campList.getStartDate();
-            verticalParent.setParentText("" + campList.getCampName()+":"+ActivityUtils.GetMonthDate(ss));
-
-//            verticalParent.setParentText("" + ActivityUtils.GetDateTime(Long.valueOf(campList.getStartDate())));
+            verticalParent.setParentText("" + campList.getCampName()+":"+ActivityUtils.GetStartDate(campList.getStartDate()));
             if (i == 0) {
                 verticalParent.setInitiallyExpanded(true);
             }
