@@ -22,13 +22,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
+import com.oxilo.mobikyte.MODAL.UserCampaign;
 import com.oxilo.mobikyte.POJO.CampList;
+import com.oxilo.mobikyte.POJO.ModalAddCampign;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
 import com.oxilo.mobikyte.fragement.AboutFragement;
 import com.oxilo.mobikyte.fragement.CampaignListingFragement;
 import com.oxilo.mobikyte.fragement.ChangePasswordFragment;
 import com.oxilo.mobikyte.fragement.HelpFragement;
+import com.oxilo.mobikyte.fragement.InVoiceFragment;
 import com.oxilo.mobikyte.fragement.LearnMoreFragment;
 import com.oxilo.mobikyte.fragement.Map;
 import com.oxilo.mobikyte.fragement.ReportFragement;
@@ -43,20 +46,20 @@ import com.oxilo.mobikyte.utility.ActivityUtils;
 public class WelcomeActivity extends SampleActivityBase
         implements ReportFragement.OnFragmentInteractionListener,
         Settings.OnFragmentInteractionListener,
-        HelpFragement.OnFragmentInteractionListener
-        ,CampaignListingFragement.OnFragmentInteractionListener,
+        HelpFragement.OnFragmentInteractionListener,
+        CampaignListingFragement.OnFragmentInteractionListener,
         PieFragment.OnFragmentInteractionListener,
         HeatMapFragement.OnFragmentInteractionListener,
         WelcomeFragement.OnFragmentInteractionListener,
         LearnMoreFragment.OnFragmentInteractionListener,
-        ChangePasswordFragment.OnFragmentInteractionListener,AboutFragement.OnFragmentInteractionListener{
+        ChangePasswordFragment.OnFragmentInteractionListener,AboutFragement.OnFragmentInteractionListener,InVoiceFragment.OnFragmentInteractionListener{
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     public Toolbar toolbar;
     NavigationView navigation;
     private FragmentManager fragmentManager;
-    ModalLogin modalLogin ;
+    ModalLogin modalLogin ; UserCampaign userCampaign; ModalAddCampign modalAddCampign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,6 +233,9 @@ public class WelcomeActivity extends SampleActivityBase
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         ActivityTransitionLauncher.with(WelcomeActivity.this).from(getWindow().getDecorView().getRootView()).launch(intent);
                         break;
+                    case R.id.navItem9:
+                        refreshFragement(9);
+                        break;
                     case R.id.navItem6:
                         final Intent mintent = new Intent(WelcomeActivity.this, WelcomeActivity.class);
                         mintent.putExtra(getResources().getString(R.string.praceable_modal_regsitration), modalLogin);
@@ -285,6 +291,11 @@ public class WelcomeActivity extends SampleActivityBase
                 mapFragment = AboutFragement.newInstance("", "");
                 ActivityUtils.launchFragementWithAnimation(mapFragment, WelcomeActivity.this);
                 break;
+            case 9:
+                mapFragment = InVoiceFragment.newInstance(userCampaign,modalAddCampign,modalLogin);
+                ActivityUtils.launchFragementWithAnimation(mapFragment,WelcomeActivity.this);
+                break;
+
             default:
                 mapFragment = Map.newInstance("", "", modalLogin);
                 ft.add(R.id.main_content, mapFragment);

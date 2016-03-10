@@ -60,6 +60,7 @@
 
                     <com.oxilo.mobikyte.ui.CustomTextView
                         style="@style/msgtextlight"
+                        android:textAllCaps="true"
                         android:text="Order ID"/>
                 </LinearLayout>
                 <LinearLayout
@@ -97,64 +98,92 @@
                         android:text="INVOICE ID"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
+
+            <RelativeLayout
                 android:id="@+id/l2"
-                style="@style/preLinear"
-                android:weightSum="9"
-                android:layout_below="@+id/l1">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/l1"
+                android:layout_marginTop="15dp"
+                android:paddingTop="@dimen/parent_padding_top"
+                android:paddingBottom="@dimen/parent_padding_bottom">
+
                 <LinearLayout
-                    style="@style/horLinear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="left"
-                    android:layout_weight="3">
+                    android:layout_alignParentLeft="true">
 
                     <com.oxilo.mobikyte.ui.CustomTextView
-                        android:id="@+id/start_date"
-                        style="@style/msgtextbold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Oct,12,2015"/>
-
-                    <com.oxilo.mobikyte.ui.CustomTextView
-                        style="@style/msgtextlight"
-                        android:text="CREATE DT"/>
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/horLinear"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="3">
-
-                    <com.oxilo.mobikyte.ui.CustomTextView
-                        android:id="@+id/plan"
-                        style="@style/msgtextbold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="5000 AD VIEWS"/>
-
-                    <com.oxilo.mobikyte.ui.CustomTextView
-                        style="@style/msgtextlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_gravity="left"
-                        android:layout_marginLeft="20dp"
-                        android:text="PLAN"/>
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/horLinear"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="right"
-                    android:layout_weight="3">
-
-                    <com.oxilo.mobikyte.ui.CustomTextView
-                        android:id="@+id/inr"
-                        style="@style/msgtextbold"
+                        android:textAllCaps="true"
+                        android:text="1190"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="0"/>
+                        android:id="@+id/start_date"/>
 
                     <com.oxilo.mobikyte.ui.CustomTextView
                         style="@style/msgtextlight"
-                        android:text="INR"/>
+                        android:text="CREATE DT"
+                        android:layout_gravity="left"
+                        android:textAllCaps="true"
+                        android:gravity="center"/>
+
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerHorizontal="true">
+
+                    <com.oxilo.mobikyte.ui.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="1190"
+                        android:id="@+id/plan"/>
+
+                    <com.oxilo.mobikyte.ui.CustomTextView
+                        style="@style/msgtextlight"
+                        android:layout_gravity="center"
+                        android:textAllCaps="true"
+                        android:text="PLAN"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true">
+
+                    <com.oxilo.mobikyte.ui.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="right"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAllCaps="true"
+                        android:text="1190"
+                        android:id="@+id/inr"/>
+
+                    <com.oxilo.mobikyte.ui.CustomTextView
+                        style="@style/msgtextlight"
+                        android:text="@string/inr"
+                        android:layout_gravity="right"
+                        android:textAllCaps="true"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/linearmsg1"
@@ -201,6 +230,27 @@
 
                 </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/coupon"
+                style="@style/welLinear"
+                android:layout_marginTop="5dp"
+                android:layout_above="@+id/l5">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/action_coupon_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/coupon_code"
+                        android:textColor="@color/mdtp_dark_gray"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/l5"
                     style="@style/welLinear"

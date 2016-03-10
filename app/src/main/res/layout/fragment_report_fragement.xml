@@ -141,6 +141,7 @@
                     android:visibility="invisible"
                     android:layout_centerInParent="true">
                     <com.oxilo.mobikyte.ui.CustomTextView
+                        android:id="@+id/action_start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11200"
@@ -152,7 +153,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_gravity="center"
                         android:textColor="@android:color/darker_gray"
-                        android:text="CompaignId" />
+                        android:text="Start Time" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -3,6 +3,7 @@ package com.oxilo.mobikyte.utility;
 import android.net.ParseException;
 
 import com.oxilo.mobikyte.POJO.CampList;
+import com.oxilo.mobikyte.POJO.InVoiceObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,9 @@ public final class DateUtils<T> implements Comparator<T> {
         try {
             //Pass String Date Format To Set UserDefined Date
             //Parse given STRING date to DATE format through df
-            Date d1 = new Date(((CampList)t).getStartDate() * 1000);
+
+            Long dx = ((CampList)t).getStartDate();
+            Date d1 = new Date(dx * 1000);
             Calendar cT = Calendar.getInstance();
             cT.setTime(d1);
 

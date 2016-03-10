@@ -57,7 +57,7 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
         holder.call_webView.setText("" + campList.getCall() + campList.getWeb());
         holder.totalAdsRemainingView.setText("" + campList.getShownImp());
         holder.totalAdsView.setText("" + campList.getTotalImp());
-        holder.startTimeView.setText("" + ActivityUtils.GetDateTime(Long.valueOf(campList.getStartDate())));
+        holder.startTimeView.setText("" +ActivityUtils.GetReportTime(campList.getStartDate()));
         holder.campaignView.setText("" + campList.getCampId());
         holder.action_status.setText("" + campList.getCampStatus());
         setAnimation(holder,position);
@@ -65,16 +65,11 @@ public class CampaignListAdapter extends RecyclerView.Adapter<CampaignListAdapte
 
     @Override
     public int getItemCount() {
-        if (campLists!=null)
-        return campLists.size();
+        if (campLists != null)
+            return campLists.size();
         else
             return 0;
     }
-
-
-
-
-
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and

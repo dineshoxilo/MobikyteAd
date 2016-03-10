@@ -210,8 +210,12 @@ public class Action extends Fragment {
             }
         });
 
-        webSiteView.setText(modalLogin.getWebsite().toString() != null ? modalLogin.getWebsite().toString() : "No web url is found");
-
+        try {
+            webSiteView.setText(modalLogin.getWebsite() != null ? modalLogin.getWebsite().toString() : "No web url is found");
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+            webSiteView.setText("mobikyte.com");
+        }
 
         AppCompatButton btn_next = (AppCompatButton)view.findViewById(R.id.email_sign_in_button);
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -223,48 +227,48 @@ public class Action extends Fragment {
     }
 
     private void attemptLogin() {
-        // Reset errors.
-        webSiteView.setError(null);
-        callView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String web = webSiteView.getText().toString();
-        String call = callView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for  URL, if the user entered one.
-        if (TextUtils.isEmpty(web)) {
-            webSiteView.setError(getString(R.string.error_field_required));
-            focusView = webSiteView;
-            cancel = true;
-        }
-
-        // Check for a valid call address.
-//       else if (TextUtils.isEmpty(call)) {
-//            callView.setError(getString(R.string.error_field_required));
-//            focusView = callView;
-//            cancel = true;
+//        // Reset errors.
+////        webSiteView.setError(null);
+//        callView.setError(null);
+//
+//        // Store values at the time of the login attempt.
+//        String web = webSiteView.getText().toString();
+//        String call = callView.getText().toString();
+//
+//        boolean cancel = false;
+//        View focusView = null;
+//
+//        // Check for  URL, if the user entered one.
+//        if (TextUtils.isEmpty(web)) {
+////            webSiteView.setError(getString(R.string.error_field_required));
+//            focusView = webSiteView;
+//            cancel = false;
 //        }
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-//            showProgress(true);
-//            doSomething();
+//
+//        // Check for a valid call address.
+////       else if (TextUtils.isEmpty(call)) {
+////            callView.setError(getString(R.string.error_field_required));
+////            focusView = callView;
+////            cancel = true;
+////        }
+//        if (cancel) {
+//            // There was an error; don't attempt login and focus the first
+//            // form field with an error.
+//            focusView.requestFocus();
+//        } else {
+//            // Show a progress spinner, and kick off a background task to
+//            // perform the user login attempt.
+////            showProgress(true);
+////            doSomething();
             actionNext();
-        }
+//        }
     }
 
     private void actionNext(){
         String  web, action;
         if (webSiteView.getText().toString().equals("") || webSiteView.getText().toString().equals("null"))
         {
-            web = "http://wwww.mobikyte.com";
+            web = "http://www.mobikyte.com";
         }else{
             web = webSiteView.getText().toString();
         }

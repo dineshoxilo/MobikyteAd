@@ -449,7 +449,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onResponse(String response) {
                 showProgress(false);
                 VolleyLog.v("Response:%n %s", response);
-                Gson gson = new GsonBuilder().create();
+//                Gson gson = new GsonBuilder().create();
+                Gson gson = new GsonBuilder().serializeNulls().create();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("status").equals(getResources().getString(R.string.response_success))){

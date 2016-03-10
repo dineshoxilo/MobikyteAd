@@ -132,11 +132,10 @@ public class VerticalExpandableAdapter extends ExpandableRecyclerAdapter<Vertica
         }
 
         public void bind(CampList campList) {
-            String ss = campList.getStartDate().toString();
-            startTimeView.setText("" + ActivityUtils.GetMonthDate(ss.toString()));
+            startTimeView.setText("" + ActivityUtils.GetReportTime(campList.getStartDate()));
             call_webView.setText("" + campList.getCall() + campList.getWeb());
             totalAdsRemainingView.setText("" + campList.getShownImp());
-            totalAdsView.setText("" + campList.getTotalImp());
+//            totalAdsView.setText("" + campList.getTotalImp());
             campaignView.setText("" + campList.getCampId());
             action_status.setText("" + getStatus(campList.getCampStatus()));
         }

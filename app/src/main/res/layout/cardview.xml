@@ -63,11 +63,6 @@
                    android:layout_alignParentRight="true"
                    android:text="us@ussgdh"/>
 
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="1dp"
-                   android:layout_below="@+id/action_start_time"
-                   android:background="@android:color/darker_gray"/>
            </RelativeLayout>
 
            <RelativeLayout

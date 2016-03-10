@@ -104,13 +104,13 @@ public class ActivityUtils {
         return null;
     }
 
-    public static String GetDate(String date) {
+    public static Long GetDate(String date) {
         try {
             //Pass String Date Format To Set UserDefined Date
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             //Parse given STRING date to DATE format through df
             Date d1 = df.parse(date);
-            String day = (String) android.text.format.DateFormat.format("dd", d1); //20
+            Long day = Long.parseLong((String) android.text.format.DateFormat.format("dd-mm-yyyy", d1)); //20
 
             return day;
 
@@ -144,8 +144,7 @@ public class ActivityUtils {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             //Parse given STRING date to DATE format through df
             Date d1 = df.parse(date);
-            String stringMonth = (String) android.text.format.DateFormat.format("MMM d,yyyy", d1); //Jun
-
+            String stringMonth = (String) android.text.format.DateFormat.format("MMM d,yyyy", d1);
             return stringMonth;
 
         } catch (ParseException e) {
@@ -189,18 +188,60 @@ public class ActivityUtils {
         return dateTime;
 
     }
-
-
-    public static String GetCurrentTime(long millisecond) {
+    public static String GetReportTime(long millisecond) {
         //Pass String Date Format To Set UserDefined Date
-        DateFormat df = new SimpleDateFormat("EEE, hh:mm a", Locale.ENGLISH);
-        //Parse given STRING date to DATE format through df
-        Date d1 = new Date(millisecond * 1000);
-        String dateTime = df.format(d1.getTime());
+        String dateTime = "uu";
+        try {
+            DateFormat df = new SimpleDateFormat("d MMM, h:mm", Locale.ENGLISH);
+            //Parse given STRING date to DATE format through df
+            Date d1 = new Date(millisecond * 1000);
+            dateTime = df.format(d1.getTime());
+        }catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
 
         return dateTime;
 
     }
+    public static String GetReportDate(long millisecond) {
+        try {
+            //Pass String Date Format To Set UserDefined Date
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            //Parse given STRING date to DATE format through df
+            Date d1 =new Date(millisecond * 1000);
+            String stringMonth = (String) android.text.format.DateFormat.format("MMM d,yyyy", d1);
+            return stringMonth;
+
+        } catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    public static String GetCurrentTime(String s) {
+
+        final Calendar c = Calendar.getInstance();
+
+        return(new StringBuilder()
+                .append(c.get(Calendar.HOUR_OF_DAY)).append(":")
+                .append(c.get(Calendar.MINUTE)).append(":")).toString();
+    }
+
+//    public static String GetCurrentTime(long millisecond) {
+//        //Pass String Date Format To Set UserDefined Date
+//        DateFormat df = new SimpleDateFormat("EEE, hh:mm a", Locale.ENGLISH);
+//        //Parse given STRING date to DATE format through df
+//        Date d1 = new Date(millisecond * 1000);
+//        String dateTime = df.format(d1.getTime());
+//
+//        return dateTime;
+//
+//    }
     public static String GetStartDate(long millisecond) {
         //Pass String Date Format To Set UserDefined Date
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
@@ -209,6 +250,15 @@ public class ActivityUtils {
         String dateTime = df.format(d1.getTime());
 
         return dateTime;
+    }
+    public static String GetDate(long millisecond) {
+        //Pass String Date Format To Set UserDefined Date
+        DateFormat df = new SimpleDateFormat("EEE, d MMMh:mm", Locale.ENGLISH);
+        //Parse given STRING date to DATE format through df
+        Date d1 = new Date(millisecond * 1000);
+        String stringdate = (String) android.text.format.DateFormat.format("MMM d,yyyy", d1);
+
+        return stringdate;
     }
 
     public static long getMillFromDate(String date,Context mContext){
@@ -227,6 +277,33 @@ public class ActivityUtils {
             e.printStackTrace();
         }
 
+
+        return milliseconds;
+    }
+    public static String GetCreateDate(long millisecond) {
+        //Pass String Date Format To Set UserDefined Date
+        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
+        //Parse given STRING date to DATE format through df
+        Date d1 = new Date(millisecond);
+        String dateTime = df.format(d1.getTime());
+
+        return dateTime;
+    }
+    public static long getMiliFromDate(String date){
+        String dateseperator = "-";
+        String timeSeperator = ":";
+        String input = date;
+        long milliseconds = 0;
+        long millisecondsFromNow = 0;
+        Date mDate = null;
+        try {
+            mDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH).parse(input);
+            milliseconds = mDate.getTime();
+            millisecondsFromNow = milliseconds - (new Date()).getTime();
+//            Toast.makeText(mContext, "Milliseconds to future date="+millisecondsFromNow, Toast.LENGTH_SHORT).show();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return milliseconds;
     }

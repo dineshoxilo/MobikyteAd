@@ -22,12 +22,15 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
+import com.oxilo.mobikyte.MODAL.UserCampaign;
+import com.oxilo.mobikyte.POJO.ModalAddCampign;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
 import com.oxilo.mobikyte.fragement.AboutFragement;
 import com.oxilo.mobikyte.fragement.CampaignListingFragement;
 import com.oxilo.mobikyte.fragement.ChangePasswordFragment;
 import com.oxilo.mobikyte.fragement.HelpFragement;
+import com.oxilo.mobikyte.fragement.InVoiceFragment;
 import com.oxilo.mobikyte.fragement.Map;
 import com.oxilo.mobikyte.fragement.ObjectiveFragement;
 import com.oxilo.mobikyte.fragement.ReportFragement;
@@ -45,12 +48,13 @@ public class ObjectiveScreen extends SampleActivityBase implements
         HelpFragement.OnFragmentInteractionListener,
         CampaignListingFragement.OnFragmentInteractionListener,
         PieFragment.OnFragmentInteractionListener,
+        InVoiceFragment.OnFragmentInteractionListener,
         HeatMapFragement.OnFragmentInteractionListener,
         ChangePasswordFragment.OnFragmentInteractionListener,
         AboutFragement.OnFragmentInteractionListener{
 
 
-    ModalLogin modalLogin ;
+    ModalLogin modalLogin ; UserCampaign userCampaign;ModalAddCampign modalAddCampign;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -238,6 +242,9 @@ public class ObjectiveScreen extends SampleActivityBase implements
                     case R.id.navItem8:
                         refreshFragement(8);
                         break;
+                    case R.id.navItem9:
+                        refreshFragement(9);
+                        break;
                 }
                 return false;
             }
@@ -280,6 +287,10 @@ public class ObjectiveScreen extends SampleActivityBase implements
             case 8:
                 AboutFragement aboutFragement = AboutFragement.newInstance("", "");
                 ActivityUtils.launchFragementWithAnimation(aboutFragement, ObjectiveScreen.this);
+                break;
+            case 9:
+                mapFragment = InVoiceFragment.newInstance(userCampaign,modalAddCampign,modalLogin);
+                ActivityUtils.launchFragementWithAnimation(mapFragment,ObjectiveScreen.this);
                 break;
             default:
                 mapFragment = Map.newInstance("", "", modalLogin);

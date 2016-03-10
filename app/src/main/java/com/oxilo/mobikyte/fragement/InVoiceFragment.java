@@ -40,6 +40,7 @@ import com.oxilo.mobikyte.POJO.ModalFetchCampaign;
 import com.oxilo.mobikyte.POJO.ModalInVoice;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
+import com.oxilo.mobikyte.SocialAuthListener;
 import com.oxilo.mobikyte.adapter.InVoiceAdapter;
 import com.oxilo.mobikyte.expandcollapse.InVoiceExpandableAdapter;
 import com.oxilo.mobikyte.expandcollapse.VerticalChild;
@@ -49,14 +50,20 @@ import com.oxilo.mobikyte.holder.GroupItem;
 import com.oxilo.mobikyte.logger.Log;
 import com.oxilo.mobikyte.utility.ActivityUtils;
 import com.oxilo.mobikyte.utility.DateUtils;
+import com.oxilo.mobikyte.utility.InVoiceDateUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +73,7 @@ import java.util.List;
  * Use the {@link InVoiceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InVoiceFragment extends Fragment {
+public class InVoiceFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -78,10 +85,11 @@ public class InVoiceFragment extends Fragment {
     private ModalAddCampign modalAddCampign;
     private ModalLogin modalLogin;
 
-    private OnFragmentInteractionListener mListener;
     RecyclerView recyclerView;
     //    Toolbar toolbar;
     private GroupItem groupItem;
+
+    private OnFragmentInteractionListener mListener;
 
     private View mProgressView;
     private View mLoginFormView;
@@ -268,7 +276,7 @@ public class InVoiceFragment extends Fragment {
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
                     else if (jsonObject.getString("status").equals(getResources().getString(R.string.response_error))){
-                        Toast.makeText(getActivity(), "Somethin went wrong, please try again", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Something went wrong, please try again", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     Log.e("My App", "Could not parse malformed JSON: \"" + response + "\"");
@@ -351,8 +359,9 @@ public class InVoiceFragment extends Fragment {
      * @return A List of Objects that contains all parent items. Expansion of children are handled in the adapter
      */
     private List<VerticalParent> setUpList(List<InVoiceObject> invoiceList) {
-//        DateUtils dateUtils = new DateUtils();
-//        Collections.sort(invoiceList, dateUtils);
+        InVoiceDateUtils dateUtils = new InVoiceDateUtils();
+        Collections.sort(invoiceList,dateUtils);
+
         List<VerticalParent> verticalParentList = new ArrayList<>();
 
         for (int i = 0; i < invoiceList.size(); i++) {
@@ -368,8 +377,19 @@ public class InVoiceFragment extends Fragment {
             verticalParent.setChildItemList(childItemList);
             verticalParent.setParentNumber(i);
             String ss = "" + inVoiceObject.getCreateDate();
-            verticalParent.setParentText("" + inVoiceObject.getCampaignname()+" : "+ActivityUtils.GetMonthDate(ss));
+            Date date1;
+            try {
+                //Pass String Date Format To Set UserDefined Date
+                //Parse given STRING date to DATE format through df
 
+                date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(ss);
+                Log.e("HRRR","" + date1.getTime());
+                verticalParent.setParentText("" + inVoiceObject.getCampaignname()+":"+ActivityUtils.GetCreateDate(date1.getTime()));
+
+            }catch (ParseException e) {
+
+                e.printStackTrace();
+            }
 //            verticalParent.setParentText("" + inVoiceObject.getCreateDate());
 
 //       verticalParent.setParentText("" + ActivityUtils.GetDateTime(Long.valueOf(campList.getStartDate())));

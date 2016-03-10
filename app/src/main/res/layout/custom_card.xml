@@ -11,7 +11,8 @@
                 android:gravity="left"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
-                android:text="name"/>
+                android:text="name"
+                android:textColor="@color/mdtp_light_gray"/>
 
             
             <CheckBox

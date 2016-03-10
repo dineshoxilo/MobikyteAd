@@ -77,6 +77,8 @@ import com.kogitune.activity_transition.ExitActivityTransition;
 import com.oxilo.mobikyte.Constants;
 import com.oxilo.mobikyte.FetchAddressIntentService;
 import com.oxilo.mobikyte.MODAL.MobiKytePlaceCampaignInfo;
+import com.oxilo.mobikyte.MODAL.UserCampaign;
+import com.oxilo.mobikyte.POJO.ModalAddCampign;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
 import com.oxilo.mobikyte.adapter.MobikytePlaceAutoAdapter;
@@ -177,6 +179,7 @@ public class MapsActivity extends SampleActivityBase implements
     private boolean mPermissionDenied = false;
 
     private ModalLogin modalLogin;
+    UserCampaign userCampaign; ModalAddCampign modalAddCampign;
     private TextView userNameView;
 
     private MobiKytePlaceCampaignInfo mobiKytePlaceCampaignInfo;
@@ -353,6 +356,9 @@ public class MapsActivity extends SampleActivityBase implements
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         ActivityTransitionLauncher.with(MapsActivity.this).from(getWindow().getDecorView().getRootView()).launch(intent);
                         break;
+                    case R.id.navItem9:
+                        refreshFragement(9);
+                        break;
                     case R.id.navItem6:
                         final Intent mintent = new Intent(MapsActivity.this, WelcomeActivity.class);
                         mintent.putExtra(getResources().getString(R.string.praceable_modal_regsitration), modalLogin);
@@ -524,6 +530,10 @@ public class MapsActivity extends SampleActivityBase implements
             case 8:
                 mapFragment = AboutFragement.newInstance("", "");
                 ActivityUtils.launchFragementWithAnimation(mapFragment, MapsActivity.this);
+                break;
+            case 9:
+                InVoiceFragment inVoiceFragment = InVoiceFragment.newInstance(userCampaign,modalAddCampign,modalLogin);
+                ActivityUtils.launchFragementWithAnimation(inVoiceFragment,MapsActivity.this);
                 break;
             default:
                 mapFragment = Map.newInstance("", "", modalLogin);

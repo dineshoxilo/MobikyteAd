@@ -27,6 +27,7 @@ import android.widget.TextView;
 //import com.bumptech.glide.Glide;
 import com.bumptech.glide.Glide;
 import com.oxilo.mobikyte.POJO.CampList;
+import com.oxilo.mobikyte.POJO.InVoiceObject;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
 import com.oxilo.mobikyte.SocialAuthListener;
@@ -34,6 +35,8 @@ import com.oxilo.mobikyte.fragement.graph.HeatMapFragement;
 import com.oxilo.mobikyte.fragement.graph.PieFragment;
 import com.oxilo.mobikyte.ui.CustomTextView;
 import com.oxilo.mobikyte.utility.ActivityUtils;
+
+import java.util.List;
 
 
 /**
@@ -51,6 +54,7 @@ public class ReportFragement extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+    public List<InVoiceObject> inVoiceObjectList;
     private ModalLogin modalLogin;
     private CampList camInfo;
 
@@ -187,6 +191,7 @@ public class ReportFragement extends Fragment {
         TextView actionTotalView = (CustomTextView)view.findViewById(R.id.action_total_view);
         TextView actionClicView = (CustomTextView)view.findViewById(R.id.action_click);
         ImageView imageView = (ImageView) view.findViewById(R.id.image_cam);
+        TextView startTimeView = (TextView) view.findViewById(R.id.action_start_time);
 
         Log.e("CAM INFO","" + camInfo.getCampId());
 
@@ -200,8 +205,11 @@ public class ReportFragement extends Fragment {
         reportIdView.setText((camInfo.getOrderId()!=null) ? camInfo.getOrderId()+"" : "8237");
         planView.setText((camInfo.getTotalImp()!=null) ? camInfo.getTotalImp()+"" : "5500");
 
-        String ss = "" + camInfo.getStartDate();
+//        String ss = "" + camInfo.getStartDate();
+        InVoiceObject inVoiceObject = inVoiceObjectList.get(0);
+        String ss = "" + inVoiceObject.getCreateDate();
         createDateView.setText(""+ActivityUtils.GetMonthDate(ss));      //createDateView.setText((camInfo.getStartDate()>=0) ? //ActivityUtils.GetDateTime(Long.valueOf(camInfo.getStartDate())) + "" : //"23-Nov-2015 20:30:00");
+
         actionTotalAds.setText((camInfo.getTotalImp()!=null) ? camInfo.getTotalImp()+"" : "5500");
         actionTotalView.setText((camInfo.getShownImp()!=null) ? camInfo.getShownImp()+"" : "5500");
 //        actionTotalView.setText((camInfo.getTotalImp() !=null) ? Integer.parseInt(camInfo.getTotalImp()) - camInfo.getShownImp().intValue() +"" : "7585");

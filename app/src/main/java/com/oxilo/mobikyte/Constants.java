@@ -4,7 +4,7 @@ package com.oxilo.mobikyte;
  * Created by ericbasendra on 06/12/15.
  */
 public final class Constants {
-    public static final int MY_SOCKET_TIMEOUT_MS = 15000;
+    public static final int MY_SOCKET_TIMEOUT_MS = 30000;
     public static final int SUCCESS_RESULT = 0;
     public static final int FAILURE_RESULT = 1;
     public static final String PACKAGE_NAME =

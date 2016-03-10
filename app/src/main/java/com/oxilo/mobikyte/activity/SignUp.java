@@ -117,7 +117,8 @@ public class SignUp extends AppCompatActivity implements LoaderManager.LoaderCal
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
         if (menuItem.getItemId() == android.R.id.home) {
-            finish();
+            Intent i = new Intent(SignUp.this,Mobikyte.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(menuItem);
     }
@@ -417,7 +418,8 @@ public class SignUp extends AppCompatActivity implements LoaderManager.LoaderCal
             public void onResponse(String response) {
                 showProgress(false);
                 VolleyLog.v("Response:%n %s", response);
-                Gson gson = new GsonBuilder().create();
+//                Gson gson = new GsonBuilder().create();
+                Gson gson = new GsonBuilder().serializeNulls().create();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("status").equals(getResources().getString(R.string.response_success))){

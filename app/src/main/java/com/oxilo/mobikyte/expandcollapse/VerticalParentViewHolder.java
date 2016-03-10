@@ -45,6 +45,7 @@ public class VerticalParentViewHolder extends ParentViewHolder {
     }
 
     public void bind(int parentNumber, String parentText) {
+
         mDataTextView.setText(parentText);
     }
 

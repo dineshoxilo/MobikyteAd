@@ -316,7 +316,7 @@ public class Message extends Fragment {
             Date d1 = new Date(calendar.getTimeInMillis());
             mYear = d1.getYear()+1900;
             mMonthOfYear = d1.getMonth();
-            mDayOfMonth = d1.getDay();
+            mDayOfMonth = d1.getDay()+6;
             currentDate = df.format(d1.getTime());
         }catch(Exception e){
             e.printStackTrace();

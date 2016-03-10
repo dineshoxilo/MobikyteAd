@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.oxilo.mobikyte.POJO.Plan;
@@ -212,7 +213,15 @@ public class PlansListAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View view) {
-            myClickListener.onItemClick(getLayoutPosition(), view);
+            try{
+                if(myClickListener!=null){
+                myClickListener.onItemClick(getLayoutPosition(), view);
+                }else{
+                    Toast.makeText(view.getContext(),"Click Event Null",Toast.LENGTH_SHORT).show();
+                }
+            }catch(NullPointerException e){
+                Toast.makeText(view.getContext(),"Click Event Null Ex",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -68,6 +68,9 @@ public class CampList implements Parcelable{
     @SerializedName("order_amount")
     @Expose
     private Integer orderAmount;
+    @SerializedName("start_time")
+    @Expose
+    private static String startTime;
 
     protected CampList(Parcel in) {
         action = in.readString();
@@ -88,6 +91,7 @@ public class CampList implements Parcelable{
         orderId = in.readString();
         lat = in.readString();
         lon = in.readString();
+        startTime = in.readString();
     }
 
     public static final Creator<CampList> CREATOR = new Creator<CampList>() {
@@ -443,6 +447,19 @@ public class CampList implements Parcelable{
     public void setOrderAmount(Integer orderAmount) {
         this.orderAmount = orderAmount;
     }
+    /**
+     *
+     * @return
+     * The startTime
+     */
+    public static String getStartTime() {
+        return startTime;
+    }
+
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
 
     @Override
     public int describeContents() {
@@ -469,5 +486,6 @@ public class CampList implements Parcelable{
         parcel.writeString(orderId);
         parcel.writeString(lat);
         parcel.writeString(lon);
+        parcel.writeString(startTime);
     }
 }

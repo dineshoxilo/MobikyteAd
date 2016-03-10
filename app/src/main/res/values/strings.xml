@@ -3,6 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
+    <string name="coupon_code">Coupon Code</string>
     <string name="prompt_old_password">Current Password</string>
     <string name="prompt_new_password">New Password</string>
     <string name="prompt_confirm_password">Confirm Password</string>
@@ -59,6 +60,8 @@
     <string name="drawer_item_6">Home</string>
     <string name="drawer_item_7">Change Password</string>
     <string name="drawer_item_8">About</string>
+    <string name="drawer_item_9">Invoice</string>
+
 
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
@@ -74,7 +77,7 @@
     <!--TODO:Action Fragement STRING-->
     <string name="fragement_action_display_info">What action would you like your Customer to take\?</string>
     <string name="fragement_action_website">Visit my Website / Facebook\*</string>
-    <string name="fragement_action_url">Website</string>
+    <string name="fragement_action_url">http://www.mobikyte.com</string>
     <string name="fragement_action_call">Call Me</string>
 
     <!--ToDO FRAgement preview-->
@@ -145,6 +148,8 @@
     <!--<string name="mobikyte_campaign_invoice_url">http://app.mobikyte.com/index.php/advertiser/invoiceapi\?</string>-->
     <string name="mobikyte_campaign_invoice_url">http://app.mobikyte.com/index.php/advertiser/campaignapi\?</string>
     <string name="mobikyte_graph_url">http://app.mobikyte.com/index.php/advertiser/campaigndetail_api\?</string>
+    <string name="mobikyte_coupon_code_url">http://54.235.173.134/index.php/advertiser/couponapi\?</string>
+
     <string name="volley_time_out">5000</string>
     <!-- TODO: Volley error helper -->
     <string name="no_network_connection" translatable="false">No network connection found</string>

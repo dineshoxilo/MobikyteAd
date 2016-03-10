@@ -12,10 +12,12 @@ import android.app.Fragment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.oxilo.mobikyte.ApplicationController;
@@ -33,12 +36,15 @@ import com.oxilo.mobikyte.Constants;
 import com.oxilo.mobikyte.DataPullingInterface;
 import com.oxilo.mobikyte.MODAL.MobiKytePlaceCampaignInfo;
 import com.oxilo.mobikyte.MODAL.UserCampaign;
+import com.oxilo.mobikyte.POJO.CouponList;
+import com.oxilo.mobikyte.POJO.InvoiceList;
 import com.oxilo.mobikyte.POJO.ModalAddCampign;
 import com.oxilo.mobikyte.POJO.ModalAlreadyRegistred;
 import com.oxilo.mobikyte.POJO.ModalCheckOut;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.POJO.Plan;
 import com.oxilo.mobikyte.R;
+import com.oxilo.mobikyte.expandcollapse.InVoiceExpandableAdapter;
 import com.oxilo.mobikyte.logger.Log;
 import com.oxilo.mobikyte.utility.ActivityUtils;
 import com.oxilo.mobikyte.volley.VolleyErrorHelper;
@@ -81,8 +87,9 @@ public class Checkout extends Fragment {
     private ModalAddCampign modalAddCampign;
     private ModalLogin modalLogin;
     private Plan modalPlan;
-
+    private String discount ="";
     private View mLoginFormView,mProgressView;
+    AutoCompleteTextView couponCodeView;
 
     private OnFragmentInteractionListener mListener;
     private DataPullingInterface mHostInterface;
@@ -166,7 +173,6 @@ public class Checkout extends Fragment {
         }
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -225,6 +231,7 @@ public class Checkout extends Fragment {
         TextView start_date = (TextView)v.findViewById(R.id.start_date);
         TextView plan = (TextView)v.findViewById(R.id.plan);
         TextView inr = (TextView)v.findViewById(R.id.inr);
+        couponCodeView = (AutoCompleteTextView)v.findViewById(R.id.action_coupon_code);
 
         invoice_id.setText("" + modalAddCampign.getOrderId());
         order.setText("" + modalAddCampign.getOrderId());
@@ -235,7 +242,7 @@ public class Checkout extends Fragment {
         AppCompatButton btn_next = (AppCompatButton)v.findViewById(R.id.email_sign_in_button);
         try {
             if (!modalPlan.getFreePlan().equals("1"))
-            btn_next.setText("Pay INR " + modalPlan.getInrPrice());
+                btn_next.setText("Pay INR " + modalPlan.getInrPrice());
             else
                 btn_next.setText("Pay INR 0");
         }catch (Exception ex){
@@ -246,9 +253,9 @@ public class Checkout extends Fragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               try {
-                   if (!modalPlan.getInrPrice().equals(JSONObject.NULL)){
-                       if (!modalPlan.getFreePlan().equals("1")){
+                try {
+                    if (!modalPlan.getInrPrice().equals(JSONObject.NULL)){
+                        if (!modalPlan.getFreePlan().equals("1")){
 //                           final Snackbar snackBar = Snackbar.make(v.findViewById(R.id.root_layout), "Pay via Paytm", Snackbar.LENGTH_LONG);
 //
 //                           snackBar.setAction("Ok", new View.OnClickListener() {
@@ -264,17 +271,23 @@ public class Checkout extends Fragment {
 //                           textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 //                           snackBar.show();
 
-                           openPaytm();
-                       }
-                       else{
-                           showProgress(true);
-                           doCheckOut();
-                       }
-                   }
-               }catch (Exception ex){
-                   ex.printStackTrace();
-               }
+                            String C_code = couponCodeView.getText().toString();
 
+                            if( couponCodeView.getText().toString().equals(""))
+                            {
+                                openPaytm();
+                            }else{
+                               IsCouponCodeValid(C_code);
+                            }
+                        }
+                        else{
+                            showProgress(true);
+                            doCheckOut();
+                        }
+                    }
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -334,7 +347,6 @@ public class Checkout extends Fragment {
             @Override
             public void onResponse(String response) {
                 showProgress(false);
-                String ss = response.toString();
                 Log.e("RESPONSE TO STRING" , "" + response.toString());
                 VolleyLog.v("Response:%n %s", response);
                 Gson gson = new GsonBuilder().create();
@@ -430,6 +442,66 @@ public class Checkout extends Fragment {
         return jsonObject;
     }
 
+    public void IsCouponCodeValid(String code) {
+        showProgress(true);
+        String URL = getResources().getString(R.string.mobikyte_coupon_code_url) + "data=" + Uri.encode(makeCouponBody(code).toString());
+        StringRequest req = new StringRequest(URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                showProgress(false);
+                VolleyLog.v("Response:%n %s", response);
+                Gson gson = new GsonBuilder().create();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getString("status").equals(getResources().getString(R.string.response_success))) {
+                        CouponList couponList = gson.fromJson(response, CouponList.class);
+                        try {
+                            discount = couponList.getDiscountAmt().toString();
+                        }catch (NullPointerException e){
+                            discount="";
+                            openPaytm();
+                            e.printStackTrace();
+                        }
+                        openPaytm();
+                    }
+                    else if (jsonObject.getString("status").equals(getResources().getString(R.string.response_error))){
+                        Toast.makeText(getActivity(), "Something went wrong, please try again", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Log.e("My App", "Could not parse malformed JSON: \"" + response + "\"");
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Activity activity = getActivity();
+                if(activity != null && isAdded())
+                    showProgress(false);
+                Toast.makeText(getActivity(), "Something went wrong. please try it again", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req,ApplicationController.REGISTRATION_TAG);
+    }
+
+
+
+    private JSONObject makeCouponBody(String C_code){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("client_id", modalLogin.getClientid());
+            jsonObject.put("api","fetch_coupon_request");
+            jsonObject.put("coupon_code",""+C_code);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e("JSON STRING", "" + jsonObject.toString());
+        return jsonObject;
+    }
+
+
     private void openPaytm(){
         Random randomGenerator = new Random();
         randomInt = randomGenerator.nextInt(1000);
@@ -457,7 +529,8 @@ public class Checkout extends Fragment {
         paramMap.put("CHANNEL_ID", "WAP");
         paramMap.put("INDUSTRY_TYPE_ID", "Retail");
         paramMap.put("WEBSITE", "AudianzN");
-        paramMap.put("TXN_AMOUNT", "" + modalPlan.getInrPrice());
+        int price = modalPlan.getInrPrice() - Integer.parseInt(discount);
+        paramMap.put("TXN_AMOUNT", "" + price);
         paramMap.put("THEME", "merchant");
 
 
@@ -469,8 +542,8 @@ public class Checkout extends Fragment {
 
             @Override
             public void onTransactionSuccess(Bundle bundle) {
-             //   Log.e("Error", "someErrorOccurred :" + "PAyment SUCCESS");
-               // showProgress(true);
+                //   Log.e("Error", "someErrorOccurred :" + "PAyment SUCCESS");
+                // showProgress(true);
                 doCheckOut();
             }
 
