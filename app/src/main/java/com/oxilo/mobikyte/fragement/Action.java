@@ -351,24 +351,21 @@ public class Action extends Fragment {
         }
 
         try {
-            if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
-                address = "India";
-                lat = 27.00;
-                lng = 27.00;
-            }else{
-                if (place.getAddress()!=null){
+//            if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
+//                address = "India";
+//                lat = 27.00;
+//                lng = 27.00;
+//            }else {
+                if (place.getAddress() != null) {
                     address = place.getAddress().toString().trim();
                     lat = place.getLat();
                     lng = place.getLng();
-                }
-                else
-                {
+                } else {
                     address = "India";
                     lat = 27.00;
                     lng = 27.00;
                 }
-            }
-
+//            }
         }catch (NullPointerException ex){
             ex.printStackTrace();
         }

@@ -110,8 +110,6 @@ public class SplashScreen extends AppCompatActivity implements  GoogleApiClient.
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
-
 //        userLoginLaunchMainActivity();
 
     }
@@ -130,8 +128,6 @@ public class SplashScreen extends AppCompatActivity implements  GoogleApiClient.
         }
         return true;
     }
-
-
 
     private void userLoginLaunchMainActivity(){
         // Run next activity
@@ -171,7 +167,6 @@ public class SplashScreen extends AppCompatActivity implements  GoogleApiClient.
                     }
 
                     finish();
-
                     // Run next activity
                     Intent intent = new Intent();
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -312,6 +307,8 @@ public class SplashScreen extends AppCompatActivity implements  GoogleApiClient.
                 // TODO: Consider calling
                 ActivityCompat.requestPermissions(SplashScreen.this,new String[]{ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
                 return;
+            }else{
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             }
         }else{
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -338,6 +335,9 @@ public class SplashScreen extends AppCompatActivity implements  GoogleApiClient.
                 // TODO: Consider calling
                 ActivityCompat.requestPermissions(SplashScreen.this,new String[]{ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
                 return;
+            }else{
+                mCurrentLocation=LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                startLocationUpdates();
             }
         }else{
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);

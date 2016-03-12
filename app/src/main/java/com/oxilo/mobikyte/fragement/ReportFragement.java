@@ -59,7 +59,7 @@ public class ReportFragement extends Fragment {
     private CampList camInfo;
 
     private OnFragmentInteractionListener mListener;
-    SocialAuthListener socialAuthListener = new SocialAuthListener(getActivity());
+    SocialAuthListener socialAuthListener;
 
     private View mProgressView;
     private View mLoginFormView;
@@ -107,6 +107,7 @@ public class ReportFragement extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        socialAuthListener = new SocialAuthListener(getActivity());
         initUiWidget(view);
     }
 
@@ -206,9 +207,8 @@ public class ReportFragement extends Fragment {
         planView.setText((camInfo.getTotalImp()!=null) ? camInfo.getTotalImp()+"" : "5500");
 
 //        String ss = "" + camInfo.getStartDate();
-        InVoiceObject inVoiceObject = inVoiceObjectList.get(0);
-        String ss = "" + inVoiceObject.getCreateDate();
-        createDateView.setText(""+ActivityUtils.GetMonthDate(ss));      //createDateView.setText((camInfo.getStartDate()>=0) ? //ActivityUtils.GetDateTime(Long.valueOf(camInfo.getStartDate())) + "" : //"23-Nov-2015 20:30:00");
+        createDateView.setText(""+ActivityUtils.GetDate(camInfo.getStartDate()));
+        //createDateView.setText((camInfo.getStartDate()>=0) ? //ActivityUtils.GetDateTime(Long.valueOf(camInfo.getStartDate())) + "" : //"23-Nov-2015 20:30:00");
 
         actionTotalAds.setText((camInfo.getTotalImp()!=null) ? camInfo.getTotalImp()+"" : "5500");
         actionTotalView.setText((camInfo.getShownImp()!=null) ? camInfo.getShownImp()+"" : "5500");

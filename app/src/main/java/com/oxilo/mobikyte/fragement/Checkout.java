@@ -256,6 +256,7 @@ public class Checkout extends Fragment {
                 try {
                     if (!modalPlan.getInrPrice().equals(JSONObject.NULL)){
                         if (!modalPlan.getFreePlan().equals("1")){
+
 //                           final Snackbar snackBar = Snackbar.make(v.findViewById(R.id.root_layout), "Pay via Paytm", Snackbar.LENGTH_LONG);
 //
 //                           snackBar.setAction("Ok", new View.OnClickListener() {
@@ -273,8 +274,8 @@ public class Checkout extends Fragment {
 
                             String C_code = couponCodeView.getText().toString();
 
-                            if( couponCodeView.getText().toString().equals(""))
-                            {
+                            if( couponCodeView.getText().toString().equals("")) {
+                                discount="0";
                                 openPaytm();
                             }else{
                                IsCouponCodeValid(C_code);
@@ -290,14 +291,6 @@ public class Checkout extends Fragment {
                 }
             }
         });
-
-//        ImageView paytm = (ImageView)v.findViewById(R.id.paytm);
-//        paytm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openPaytm();
-//            }
-//        });
     }
 
     /**

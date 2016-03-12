@@ -24,7 +24,7 @@ public class SocialAuthListener {
     public SocialAuthListener(Context mContext){
         this.mContext = mContext;
         progressDialog = new ProgressDialog(mContext);
-        progressDialog.setMessage("Sign in ListYou...");
+        progressDialog.setMessage("Sign in Mobikyte...");
         adapter = getInstance();
     }
 

@@ -197,21 +197,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_gravity="center"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorPrimaryDark"
                         android:text="1190"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAllCaps="true"
+                        android:layout_gravity="center"
                         android:id="@+id/action_compilance"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textAllCaps="true"
+                        android:text="@string/status"
                         android:textColor="@android:color/darker_gray"
                         android:layout_marginTop="@dimen/text_inner_content_top_margin"
                         android:textSize="@dimen/thanks_cam_info"
-                        android:text="@string/status"
+                        android:textAllCaps="true"
                         android:gravity="center"/>
 
                 </LinearLayout>

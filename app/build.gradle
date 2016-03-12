@@ -45,7 +45,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.kogitune:pre-lollipop-activity-transition:1.1.0'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile ('com.google.android.gms:play-services:8.4.0'){
+        transitive = true
+    }
+    compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:3.2.0@aar') {
+        transitive = true
+    }
     compile 'com.mcxiaoke.volley:library:1.0.+'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.wdullaer:materialdatetimepicker:2.0.2'

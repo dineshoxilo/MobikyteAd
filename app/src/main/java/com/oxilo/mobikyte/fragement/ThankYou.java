@@ -210,6 +210,8 @@ public class ThankYou extends Fragment {
         }
         if (listCamp != null){
             try {
+                String currency = modalPlan.getCurrency().toString();
+
                 compaignView.setText("" + listCamp.getCampId());
                 orderView.setText("" + listCamp.getOrderId());
                 adBudgetView.setText("" +listCamp.getTotalImp());
@@ -220,6 +222,7 @@ public class ThankYou extends Fragment {
                 compaignTitleView.setText(listCamp.getCampName());
                 promotionMessageView.setText(listCamp.getPromoMsg());
                 inrView.setText("" + modalPlan.getInrPrice()!=null ? "" + modalPlan.getInrPrice() : "Free");
+
             }catch (Exception ex){
                 ex.printStackTrace();
             }

@@ -182,13 +182,13 @@ public class Preview extends Fragment {
         campaignMessageView.setText(userCampaign.getPromotionMessage());
         actionView.setText(userCampaign.getWebRequestUrl());
         try {
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                locationView.setText("Mumbai");
-            }else{
+//            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+//                locationView.setText("");
+//            }else{
                 if (place != null ){
                     locationView.setText(place.getAddress().toString());
                 }
-            }
+//            }
         }catch (NullPointerException ex){
             ex.printStackTrace();
         }

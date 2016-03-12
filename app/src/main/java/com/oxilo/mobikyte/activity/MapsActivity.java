@@ -792,6 +792,8 @@ public class MapsActivity extends SampleActivityBase implements
      * Creating google api client object
      * */
     protected synchronized void buildGoogleApiClient() {
+        Log.i("TAG", "Building GoogleApiClient");
+
         mGoogleApiClient = new GoogleApiClient.Builder(MapsActivity.this)
                 .enableAutoManage(this, 0 /* clientId */, MapsActivity.this)
                 .addConnectionCallbacks(this)
@@ -810,7 +812,12 @@ public class MapsActivity extends SampleActivityBase implements
                 // TODO: Consider calling
                 ActivityCompat.requestPermissions(MapsActivity.this,new String[]{ACCESS_FINE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
                 return;
-            }
+            }else{
+                mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                if(mCurrentLocation!=null){
+                displayLocation();}else{
+                startLocationUpdates();}
+                }
         }else{
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             displayLocation();
@@ -890,6 +897,8 @@ public class MapsActivity extends SampleActivityBase implements
                 // TODO: Consider calling
                 ActivityCompat.requestPermissions(MapsActivity.this,new String[]{ACCESS_FINE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
                 return;
+            }else{
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             }
         }else{
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
