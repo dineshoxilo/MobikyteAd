@@ -176,6 +176,7 @@
 
                     <com.oxilo.mobikyte.ui.CustomTextView
                         style="@style/msgtextlight"
+                        android:id="@+id/inr_id"
                         android:text="@string/inr"
                         android:layout_gravity="right"
                         android:textAllCaps="true"

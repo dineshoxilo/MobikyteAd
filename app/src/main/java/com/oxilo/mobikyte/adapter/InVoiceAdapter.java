@@ -30,7 +30,6 @@ public class InVoiceAdapter extends RecyclerView.Adapter<InVoiceAdapter.ViewHold
 
     private List<InVoiceObject> inVoiceObjectList;
     private ModalLogin modalLogin;
-
     public InVoiceAdapter(List<InVoiceObject> inVoiceObjectList,ModalLogin modalLogin) {
         this.inVoiceObjectList = inVoiceObjectList;
         this.modalLogin = modalLogin;

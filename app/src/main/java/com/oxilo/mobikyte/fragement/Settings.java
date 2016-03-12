@@ -304,13 +304,9 @@ public class Settings extends Fragment {
                 Constants.MY_SOCKET_TIMEOUT_MS,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
         // add the request object to the queue to be executed
         ApplicationController.getInstance().addToRequestQueue(req, ApplicationController.REGISTRATION_TAG);
-
     }
-
-
 
     private JSONObject makeJsonBody(){
         JSONObject jsonObject = new JSONObject();

@@ -225,6 +225,7 @@ public class Checkout extends Fragment {
 
         mLoginFormView = v.findViewById(R.id.login_form);
         mProgressView = v.findViewById(R.id.login_progress);
+        TextView inrID = (TextView)v.findViewById(R.id.inr_id);
         TextView invoice_id = (TextView) v.findViewById(R.id.invioce_id);
         TextView order = (TextView)v.findViewById(R.id.order_id);
         TextView campaign = (TextView)v.findViewById(R.id.campaign);
@@ -233,6 +234,8 @@ public class Checkout extends Fragment {
         TextView inr = (TextView)v.findViewById(R.id.inr);
         couponCodeView = (AutoCompleteTextView)v.findViewById(R.id.action_coupon_code);
 
+        String currency = modalPlan.getCurrency().toString();
+        inrID.setText(currency.toString());
         invoice_id.setText("" + modalAddCampign.getOrderId());
         order.setText("" + modalAddCampign.getOrderId());
         campaign.setText("" + modalAddCampign.getOrderId());
@@ -242,7 +245,7 @@ public class Checkout extends Fragment {
         AppCompatButton btn_next = (AppCompatButton)v.findViewById(R.id.email_sign_in_button);
         try {
             if (!modalPlan.getFreePlan().equals("1"))
-                btn_next.setText("Pay INR " + modalPlan.getInrPrice());
+                btn_next.setText("Pay "+modalPlan.getCurrency()+"" + modalPlan.getInrPrice());
             else
                 btn_next.setText("Pay INR 0");
         }catch (Exception ex){

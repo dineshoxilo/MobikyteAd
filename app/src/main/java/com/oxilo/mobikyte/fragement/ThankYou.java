@@ -211,7 +211,7 @@ public class ThankYou extends Fragment {
         if (listCamp != null){
             try {
                 String currency = modalPlan.getCurrency().toString();
-
+                inrID.setText(currency.toString());
                 compaignView.setText("" + listCamp.getCampId());
                 orderView.setText("" + listCamp.getOrderId());
                 adBudgetView.setText("" +listCamp.getTotalImp());
@@ -221,7 +221,7 @@ public class ThankYou extends Fragment {
                 String dfe = listCamp.getPromoMsg();
                 compaignTitleView.setText(listCamp.getCampName());
                 promotionMessageView.setText(listCamp.getPromoMsg());
-                inrView.setText("" + modalPlan.getInrPrice()!=null ? "" + modalPlan.getInrPrice() : "Free");
+                inrView.setText(("" + modalPlan.getInrPrice()!=null ? "" + modalPlan.getInrPrice() : "Free"));
 
             }catch (Exception ex){
                 ex.printStackTrace();
