@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Apps_Code\Mobikyte\app\build\intermediates\transforms\instantRunSlicer\debug\jars\1\1a\dependencies.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="85fedb46272159fc8fc2d959c9c707ef00c98fc1">
+        <dex dex="D:\Apps_Code\Mobikyte\app\build\intermediates\transforms\dex\debug\folders\1000\1a\dependencies_b3a880dad9da770582f341df997a2e382de039ce\classes.dex" />
+        <dex dex="D:\Apps_Code\Mobikyte\app\build\intermediates\transforms\dex\debug\folders\1000\1a\dependencies_b3a880dad9da770582f341df997a2e382de039ce\classes2.dex" />
+    </item>
+    <item
+        jar="D:\Apps_Code\Mobikyte\app\build\intermediates\transforms\instantRunSlicer\debug\jars\1\5\main_slice.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3ae1dc287373bd54382bd676ccb356ec1ed4027e">
+        <dex dex="D:\Apps_Code\Mobikyte\app\build\intermediates\transforms\dex\debug\folders\1000\5\main_slice_d0f9f1a77a1240b3c6b10377940f0e857616de16\classes.dex" />
+    </item>
+
+</items>

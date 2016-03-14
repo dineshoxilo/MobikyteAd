@@ -80,11 +80,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".activity.WelcomeActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
             android:name="com.paytm.pgsdk.PaytmPGActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
@@ -132,16 +127,6 @@
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme.Dark"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.Learn_More_Activity"
-            android:label="@string/title_activity_learn__more_"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".activity.Mobikyte">
-
-        </activity>
     </application>
 
 </manifest>

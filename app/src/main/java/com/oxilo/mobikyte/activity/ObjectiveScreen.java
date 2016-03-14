@@ -1,6 +1,5 @@
 package com.oxilo.mobikyte.activity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -11,14 +10,10 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
@@ -27,15 +22,11 @@ import com.oxilo.mobikyte.POJO.ModalAddCampign;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
 import com.oxilo.mobikyte.fragement.AboutFragement;
-import com.oxilo.mobikyte.fragement.CampaignListingFragement;
 import com.oxilo.mobikyte.fragement.ChangePasswordFragment;
 import com.oxilo.mobikyte.fragement.HelpFragement;
-import com.oxilo.mobikyte.fragement.InVoiceFragment;
 import com.oxilo.mobikyte.fragement.Map;
 import com.oxilo.mobikyte.fragement.ObjectiveFragement;
-import com.oxilo.mobikyte.fragement.ReportFragement;
 import com.oxilo.mobikyte.fragement.Settings;
-import com.oxilo.mobikyte.fragement.WelcomeFragement;
 import com.oxilo.mobikyte.fragement.graph.HeatMapFragement;
 import com.oxilo.mobikyte.fragement.graph.PieFragment;
 import com.oxilo.mobikyte.logger.Log;

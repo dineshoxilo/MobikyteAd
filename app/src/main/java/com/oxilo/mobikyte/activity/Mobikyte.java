@@ -1,26 +1,16 @@
 package com.oxilo.mobikyte.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.kogitune.activity_transition.ActivityTransition;
 import com.kogitune.activity_transition.ActivityTransitionLauncher;
 import com.kogitune.activity_transition.ExitActivityTransition;
 import com.oxilo.mobikyte.POJO.ModalLogin;
 import com.oxilo.mobikyte.R;
-import com.oxilo.mobikyte.fragement.CampaignListingFragement;
 import com.oxilo.mobikyte.fragement.LearnMoreFragment;
-import com.oxilo.mobikyte.fragement.Map;
-import com.oxilo.mobikyte.fragement.ObjectiveFragement;
-import com.oxilo.mobikyte.utility.ActivityUtils;
 
 public class Mobikyte extends SampleActivityBase implements LearnMoreFragment.OnFragmentInteractionListener{
 
@@ -36,15 +26,15 @@ public class Mobikyte extends SampleActivityBase implements LearnMoreFragment.On
 //        exitTransition = ActivityTransition.with(getIntent()).to(findViewById(R.id.image)).start(savedInstanceState);
 
         final TextView learn_more = (TextView)findViewById(R.id.learn_more);
-        learn_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = new Intent(Mobikyte.this, Learn_More_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-               startActivity(intent);
-                return;
-            }
-        });
+//        learn_more.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Intent intent = new Intent(Mobikyte.this, Learn_More_Activity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//               startActivity(intent);
+//                return;
+//            }
+//        });
         TextView get_started = (TextView)findViewById(R.id.get_started);
         get_started.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,7 +5,6 @@ import com.oxilo.mobikyte.POJO.ClickDatum;
 import com.oxilo.mobikyte.POJO.DeviceDatum;
 import com.oxilo.mobikyte.POJO.HeatmapDatum;
 import com.oxilo.mobikyte.POJO.ImprDatum;
-import com.oxilo.mobikyte.POJO.InVoiceObject;
 import com.oxilo.mobikyte.POJO.IspDatum;
 import com.oxilo.mobikyte.POJO.Plan;
 
